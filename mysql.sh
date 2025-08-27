@@ -25,7 +25,7 @@
     exit 1
  fi
  
- validate() {
+ VALIDATE() {
 
     if [ $1 -ne 0 ]
     then
