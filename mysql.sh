@@ -11,7 +11,15 @@
  N="\e[0m"
  Y="\e[33m"
 
-  if [ $USERID -ne 0 ]
+ CHECK_ROOT(){
+    if [ $USERID -ne 0 ]
+    then
+        echo -e "$R Please run this script with root priveleges $N" | tee -a $LOG_FILE
+        exit 1
+    fi
+} 
+
+ if [ $USERID -ne 0 ]
  then
     echo -e "$R please run this script with root previlizes $N" | tee -a $LOG_FILE
     exit 1
@@ -27,6 +35,8 @@
         echo -e "$2 is... $G SUCCESS $N" | tee -a $LOG_FILE
     fi    
  }
+
+ CHECK_ROOT
 
 
  echo "script started executing at: $(date)" | tee -a $LOG_FILE
