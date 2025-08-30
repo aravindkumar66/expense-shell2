@@ -50,5 +50,6 @@
  systemctl start mysqld &>>$LOG_FILE
  VALIDATE $? "Started MySQL server" 
  
- mysql_secure_installation --set-root-pass ExpenseApp@1
+ #mysql_secure_installation --set-root-pass ExpenseApp@1
+ mysql -h mysql.akdevops.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
  VALIDATE $? "Setting UP root password"
