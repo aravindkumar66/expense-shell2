@@ -69,7 +69,7 @@
     dnf install mysql -y &>>$LOG_FILE
     VALIDATE $? "installing mysql client"
 
-    mysql -h mysql.akdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+    mysql -h mysql.akdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 
     VALIDATE $? "validate schema loading"
 
