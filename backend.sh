@@ -60,4 +60,4 @@
 
     cd /app
     unzip /tmp/backend.zip &>>$LOG_FILE
-    VALIDATE "extracting the backend application code"
+    VALIDATE $? "extracting the backend application code"
