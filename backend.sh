@@ -62,3 +62,27 @@
     rm -rf /app/* #remove the existing code
     unzip /tmp/backend.zip &>>$LOG_FILE
     VALIDATE $? "extracting the backend application code"
+
+    npm install &>>$LOG_FILE
+    cp /home/ec2-user/expense-shell2/backend.service /etc/systemd/system/backend.service
+
+    dnf install mysql -y &>>$LOG_FILE
+    VALIDATE $? "installing mysql client"
+
+    mysql -h mysql.akdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+
+    VALIDATE $? "validate schema loading"
+
+    systemctl daemon-reload
+    VALIDATE $? "daemon reloded" &>>$LOG_FILE
+
+    systemctl enable backend
+    VALIDATE $? "backend is enabled" &>>$LOG_FILE
+
+    systemctl start backend
+    VALIDATE $? "backend is restarted" &>>$LOG_FILE
+
+    
+
+
+
