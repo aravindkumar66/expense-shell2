@@ -70,18 +70,16 @@
     VALIDATE $? "installing mysql client"
 
     mysql -h mysql.akdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
-
     VALIDATE $? "validate schema loading"
 
-    systemctl daemon-reload
-    VALIDATE $? "daemon reloded" &>>$LOG_FILE
+    systemctl daemon-reload &>>$LOG_FILE
+    VALIDATE $? "daemon reloded" 
 
-    systemctl enable backend
-    VALIDATE $? "backend is enabled" &>>$LOG_FILE
+    systemctl enable backend &>>$LOG_FILE
+    VALIDATE $? "backend is enabled" 
 
-    systemctl start backend
-    VALIDATE $? "backend is restarted" &>>$LOG_FILE
-
+    systemctl start backend &>>$LOG_FILE
+    VALIDATE $? "backend is restarted" 
     
 
 
